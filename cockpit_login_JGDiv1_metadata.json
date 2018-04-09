@@ -1,0 +1,12 @@
+{
+	"events": [],
+	"tagnames": [
+		"div",
+		"p",
+		"input",
+		"label",
+		"span",
+		"a",
+		"button"
+	]
+}

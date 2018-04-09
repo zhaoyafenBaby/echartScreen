@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <meta charset="UTF-8">
+	  <title>窗体预览</title>
+	  <link rel="stylesheet" href="vendor/vplatform/assets/css/style.css">
+    <script type="text/javascript" src="vendor/vplatform/assets/jquery-1.10.2.min.js"></script>
+  </head>
+  <body>
+  <script type="text/javascript" src="itop/resources/cockpit_vendor.lib.js"></script><script type="text/javascript" src="index.js"></script></body>
+  <script type="text/javascript">
+  	$(function(){
+  		$('#toggle_handler').click(function(){
+  			$(this).parents('.PUBLayout').toggleClass('showSide');
+  		})
+  	})
+    function openWin(componentCode,windowCode){
+      $(".active").removeClass("active");
+      $("#"+componentCode+"_"+windowCode).addClass("active");
+      window.localStorage.setItem("openedWindow","{\"componentCode\":\""+componentCode+"\",\"windowCode\":\""+windowCode+"\"}");
+      $("#winIframe").attr("src",componentCode+'_'+windowCode+".html");
+    }
+    var storage = window.localStorage;
+    var configStr = storage.getItem("openedWindow");
+    if(configStr){
+      var config = eval("("+configStr+")");
+      openWin(config.componentCode,config.windowCode);
+    }else{
+      var dd = $(".PUBmenu dd").eq(0);
+      openWin(dd.attr("componentCode"),dd.attr("windowCode"));
+    }
+  </script>
+</html>
